@@ -1,31 +1,64 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <router-view />
   </div>
 </template>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+* {
+  margin: 0;
+  padding: 0;
+}
+div {
+  outline: none;
+}
+
+p,
+a,
+div,
+span {
+  vertical-align: middle;
+  font-family: inherit;
+}
+body {
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-overflow-scrolling: touch;
+  font-size: 14px;
+  line-height: 1;
+  font-family: "SF Pro SC", "SF Pro Display", "Segoe UI", SegoeUI,
+    "SF Pro Icons", "PingFang SC", "Helvetica Neue", "Helvetica",
+    "segoe-ui_normal", sans-serif;
+  text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+  position: relative;
+  color: #323232;
+  background-color: #f7f7f7;
+  height: 100%;
+  letter-spacing: -0.035em;
 }
-#nav {
-  padding: 30px;
+ul,
+dl,
+ol {
+  list-style: none;
 }
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
+a,
+a:visited,
+a:hover {
+  text-decoration: none;
+  -webkit-touch-callout: none;
 }
-
-#nav a.router-link-exact-active {
-  color: #42b983;
+a,
+button,
+input,
+select,
+textarea {
+  border: none;
+  outline: none;
+  text-decoration: none;
+  -webkit-touch-callout: none;
+  font-family: inherit;
+  background: none;
 }
 </style>
