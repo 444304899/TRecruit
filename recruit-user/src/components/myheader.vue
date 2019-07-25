@@ -61,6 +61,7 @@
             :class="{active:isShow}"
             @focus="focus"
             @blur="unfocus"
+            @keyup.enter="search"
           />
           <ul class="search-select-ul normal" style="display: none;">
             <li class="search-select-group">
@@ -85,12 +86,18 @@ export default {
       isDown: true
     };
   },
+  watch: {
+  },
   methods: {
     focus() {
       this.isShow = true;
+      this.$store.commit('SdChange');
+      console.log("focus",this.$store.state.SdShow);
     },
     unfocus() {
       this.isShow = false;
+      this.$store.commit('SdChange');
+      console.log("unfocus",this.$store.state.SdShow);
     },
     handleScroll() {
       var scrollTop =
@@ -104,11 +111,15 @@ export default {
       this.i = scrollTop;
       if (scroll < 0) {
         this.isDown = false;
-        console.log("up");
+        // console.log("up");
       } else {
         this.isDown = true;
-        console.log("down");
+        // console.log("down");
       }
+    },
+    search() {
+      
+      console.log("search");
     }
   },
   mounted: function() {
@@ -456,5 +467,15 @@ export default {
   background-position: center;
   background-repeat: no-repeat;
   transition: 0.5s all cubic-bezier(0.2, 0, 0.2, 1);
+}
+.header .header-search .search-btn:hover:after {
+  /* right: -6px; */
+  transform: translateX(6px);
+  background-image: url(./../images/side-right-hover.png);
+  background-size: 12px 12px;
+}
+.header.adaption-color .header-search .search-btn:after {
+  background-image: url(./../images/side-w-right.png);
+  background-size: 12px 12px;
 }
 </style>

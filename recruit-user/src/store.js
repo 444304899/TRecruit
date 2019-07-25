@@ -5,10 +5,12 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-
+    SdShow:false
   },
   mutations: {
-
+    SdChange (state){
+      state.SdShow = !state.SdShow
+    }
   },
   actions: {
 

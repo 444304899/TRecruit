@@ -61,4 +61,37 @@ textarea {
   font-family: inherit;
   background: none;
 }
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+input,
+textarea,
+select,
+button,
+label {
+  font-size: 100%;
+  font-weight: normal;
+  vertical-align: middle;
+  font-family: inherit;
+}
+.app {
+  min-height: 100%;
+  height: auto;
+  /* height: 100%; */
+  position: relative;
+  overflow: hidden;
+}
+.g-clr {
+  zoom: 1;
+}
+.g-clr:after {
+  display: block;
+  visibility: hidden;
+  clear: both;
+  height: 0;
+  content: ".";
+}
 </style>
