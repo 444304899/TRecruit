@@ -7,39 +7,45 @@
         <div class="sidebar-title">过滤条件</div>
         <div class="option-wrapper">
           <div class="option-item">
-            <div class="item-text">
+            <div
+              class="item-text"
+              :class="{nomarl:CountryisOpen,active:!CountryisOpen}"
+              @click="openList('Country')"
+            >
               <a href="javascript:;" class="item-link">国家/地区</a>
               <div class="open-btn">
                 <div class="vertical-btn"></div>
                 <div class="transverse-btn"></div>
               </div>
             </div>
-            <ul class="item-ul" style="padding-top: 20px;display:none">
-              <li class="item-li-box">
-                <div class="checkbox-content">
-                  <div class="item-li">中国</div>
-                </div>
-              </li>
-              <li class="item-li-box">
-                <div class="checkbox-content">
-                  <div class="item-li">美国</div>
-                </div>
-              </li>
+            <ul class="item-ul" style="padding-top: 20px;display:block" :style="Countrydispl">
+              <el-checkbox-group v-model="checkList">
+                <li class="item-li-box">
+                  <div class="checkbox-content" @change="add('中国')">
+                    <el-checkbox label="中国" class="item-li" ></el-checkbox>
+                  </div>
+                </li>
+                <li class="item-li-box">
+                  <div class="checkbox-content" @change="add('美国')">
+                    <el-checkbox label="美国" class="item-li"></el-checkbox>
+                  </div>
+                </li>
+              </el-checkbox-group>
             </ul>
           </div>
           <div class="option-item">
-            <div class="item-text" :class="{nomarl:isOpen,active:!isOpen}" @click="openList">
+            <div
+              class="item-text"
+              :class="{nomarl:CityisOpen,active:!CityisOpen}"
+              @click="openList('City')"
+            >
               <a href="javascript:;" class="item-link">城市</a>
               <div class="open-btn">
                 <div class="vertical-btn"></div>
                 <div class="transverse-btn"></div>
               </div>
             </div>
-            <div
-              class="current-selection"
-              style="padding-top: 20px;transition: 0.3s height ease-in-out, 0.3s padding-top ease-in-out, 0.3s padding-bottom ease-in-out;overflow: hidden;"
-              :style="displ"
-            >
+            <div class="current-selection" :style="Citydispl">
               <div class="search-input">
                 <input maxlength="20" type="text" class="item-link search" />
                 <!---->
@@ -48,263 +54,295 @@
               <p class="tips" style="display: none;">75条关于""的结果</p>
               <p class="tips active">&nbsp;</p>
               <ul class="city-selection">
-                <li class="item-li-box">
-                  <div class="checkbox-content">
-                    <div class="item-li">深圳</div>
-                  </div>
-                </li>
-                <li class="item-li-box">
-                  <div class="checkbox-content">
-                    <div class="item-li">北京</div>
-                  </div>
-                </li>
+                <el-checkbox-group v-model="checkList">
+                  <li class="item-li-box">
+                    <div class="checkbox-content">
+                      <el-checkbox label="深圳" class="item-li"></el-checkbox>
+                    </div>
+                  </li>
+                  <li class="item-li-box">
+                    <div class="checkbox-content">
+                      <el-checkbox label="北京" class="item-li"></el-checkbox>
+                    </div>
+                  </li>
+                </el-checkbox-group>
               </ul>
             </div>
           </div>
           <div class="option-item">
-            <div class="item-text active">
+            <div
+              class="item-text"
+              :class="{nomarl:ProfessionalisOpen,active:!ProfessionalisOpen}"
+              @click="openList('Professional')"
+            >
               <a href="javascript:;" class="item-link">职业类别</a>
               <div class="open-btn">
                 <div class="vertical-btn"></div>
                 <div class="transverse-btn"></div>
               </div>
             </div>
-            <ul class="item-ul" style="padding-top: 20px;">
-              <li class="classification technology">
-                <div class="item-li technology-category active">
-                  <div class="classification-text">技术</div>
-                </div>
-                <div class="classification-item technology-item">
-                  <ul class="second-menu">
-                    <li class="item-li-box">
-                      <div class="checkbox-content">
-                        <div class="item-li active">技术研发类</div>
-                      </div>
-                    </li>
-                    <li class="item-li-box">
-                      <div class="checkbox-content">
-                        <div class="item-li active">质量管理类</div>
-                      </div>
-                    </li>
-                    <li class="item-li-box">
-                      <div class="checkbox-content">
-                        <div class="item-li active">技术运营类</div>
-                      </div>
-                    </li>
-                    <li class="item-li-box">
-                      <div class="checkbox-content">
-                        <div class="item-li active">安全技术类</div>
-                      </div>
-                    </li>
-                    <li class="item-li-box">
-                      <div class="checkbox-content">
-                        <div class="item-li active">AI、算法与大数据</div>
-                      </div>
-                    </li>
-                    <li class="item-li-box">
-                      <div class="checkbox-content">
-                        <div class="item-li active">企管类</div>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-              </li>
-              <li class="classification technology">
-                <div class="item-li technology-category">
-                  <div class="classification-text">设计</div>
-                </div>
-                <div class="classification-item technology-item">
-                  <ul class="second-menu">
-                    <li class="item-li-box">
-                      <div class="checkbox-content">
-                        <div class="item-li">设计类</div>
-                      </div>
-                    </li>
-                    <li class="item-li-box">
-                      <div class="checkbox-content">
-                        <div class="item-li">游戏美术类</div>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-              </li>
-              <li class="classification technology">
-                <div class="item-li technology-category">
-                  <div class="classification-text">产品</div>
-                </div>
-                <div class="classification-item technology-item">
-                  <ul class="second-menu">
-                    <li class="item-li-box">
-                      <div class="checkbox-content">
-                        <div class="item-li">产品类</div>
-                      </div>
-                    </li>
-                    <li class="item-li-box">
-                      <div class="checkbox-content">
-                        <div class="item-li">游戏产品类</div>
-                      </div>
-                    </li>
-                    <li class="item-li-box">
-                      <div class="checkbox-content">
-                        <div class="item-li">项目类</div>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-              </li>
-              <li class="classification technology">
-                <div class="item-li technology-category">
-                  <div class="classification-text">营销与公关</div>
-                </div>
-                <!---->
-              </li>
-              <li class="classification technology">
-                <div class="item-li technology-category">
-                  <div class="classification-text">销售、服务与支持</div>
-                </div>
-                <div class="classification-item technology-item">
-                  <ul class="second-menu">
-                    <li class="item-li-box">
-                      <div class="checkbox-content">
-                        <div class="item-li">销售类</div>
-                      </div>
-                    </li>
-                    <li class="item-li-box">
-                      <div class="checkbox-content">
-                        <div class="item-li">客服类</div>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-              </li>
-              <li class="classification technology">
-                <div class="item-li technology-category">
-                  <div class="classification-text">内容</div>
-                </div>
-                <!---->
-              </li>
-              <li class="classification technology">
-                <div class="item-li technology-category">
-                  <div class="classification-text">财务</div>
-                </div>
-                <!---->
-              </li>
-              <li class="classification technology">
-                <div class="item-li technology-category">
-                  <div class="classification-text">人力资源</div>
-                </div>
-                <!---->
-              </li>
-              <li class="classification technology">
-                <div class="item-li technology-category">
-                  <div class="classification-text">法务</div>
-                </div>
-                <!---->
-              </li>
-              <li class="classification technology">
-                <div class="item-li technology-category">
-                  <div class="classification-text">行政支持</div>
-                </div>
-                <!---->
-              </li>
-              <li class="classification technology">
-                <div class="item-li technology-category">
-                  <div class="classification-text">战略与投资</div>
-                </div>
-                <!---->
-              </li>
+            <ul class="item-ul" style="padding-top: 20px;" :style="Professionaldispl">
+              <el-checkbox-group v-model="checkList">
+                <li class="classification technology">
+                  <el-checkbox
+                    :indeterminate="isIndeterminate1"
+                    v-model="checkAllJishu"
+                    @change="handleCheckAllChangeJishu"
+                    class="item-li"
+                  >技术</el-checkbox>
+                  <div style="margin: 15px 0;"></div>
+                  <el-checkbox-group
+                    v-model="checkedCities"
+                    @change="handleCheckedCitiesChange"
+                    class="classification-item"
+                  >
+                    <ul class="second-menu">
+                      <el-checkbox
+                        v-for="city in cities"
+                        :label="city"
+                        :key="city"
+                        class="item-li-box"
+                        style="display:block"
+                      >
+                        <!-- <li class="item-li-box"> -->
+                        <div class="checkbox-content">
+                          <div class="item-li">{{city}}</div>
+                        </div>
+                        <!-- </li> -->
+                      </el-checkbox>
+                    </ul>
+                  </el-checkbox-group>
+                </li>
+                <li class="classification technology">
+                  <el-checkbox
+                    :indeterminate="isIndeterminate2"
+                    v-model="checkAllDesigns"
+                    @change="handleCheckAllChangeDesign"
+                    class="item-li"
+                  >设计</el-checkbox>
+                  <div style="margin: 15px 0;"></div>
+                  <el-checkbox-group
+                    v-model="checkedDesigns"
+                    @change="handleCheckedDesignsChange"
+                    class="classification-item"
+                  >
+                    <ul class="second-menu">
+                      <el-checkbox
+                        v-for="design in designs"
+                        :label="design"
+                        :key="design"
+                        class="item-li-box"
+                        style="display:block"
+                      >
+                        <!-- <li class="item-li-box"> -->
+                        <div class="checkbox-content">
+                          <div class="item-li">{{design}}</div>
+                        </div>
+                        <!-- </li> -->
+                      </el-checkbox>
+                    </ul>
+                  </el-checkbox-group>
+                </li>
+                <li class="classification technology">
+                  <el-checkbox
+                    :indeterminate="isIndeterminate3"
+                    v-model="checkAllProducts"
+                    @change="handleCheckAllChangeProduct"
+                    class="item-li"
+                  >产品</el-checkbox>
+                  <div style="margin: 15px 0;"></div>
+                  <el-checkbox-group
+                    v-model="checkedProducts"
+                    @change="handleCheckedProductsChange"
+                    class="classification-item"
+                  >
+                    <ul class="second-menu">
+                      <el-checkbox
+                        v-for="product in products"
+                        :label="product"
+                        :key="product"
+                        class="item-li-box"
+                        style="display:block"
+                      >
+                        <!-- <li class="item-li-box"> -->
+                        <div class="checkbox-content">
+                          <div class="item-li">{{product}}</div>
+                        </div>
+                        <!-- </li> -->
+                      </el-checkbox>
+                    </ul>
+                  </el-checkbox-group>
+                </li>
+                <li class="classification technology">
+                  <div class="item-li technology-category">
+                    <el-checkbox label="营销与公关" class="classification-text"></el-checkbox>
+                  </div>
+                </li>
+                <li class="classification technology">
+                  <el-checkbox
+                    :indeterminate="isIndeterminate4"
+                    v-model="checkAllSales"
+                    @change="handleCheckAllChangeSale"
+                    class="item-li"
+                  >销售、服务与支持</el-checkbox>
+                  <div style="margin: 15px 0;"></div>
+                  <el-checkbox-group
+                    v-model="checkedSales"
+                    @change="handleCheckedSalesChange"
+                    class="classification-item"
+                  >
+                    <ul class="second-menu">
+                      <el-checkbox
+                        v-for="sale in sales"
+                        :label="sale"
+                        :key="sale"
+                        class="item-li-box"
+                        style="display:block"
+                      >
+                        <!-- <li class="item-li-box"> -->
+                        <div class="checkbox-content">
+                          <div class="item-li">{{sale}}</div>
+                        </div>
+                        <!-- </li> -->
+                      </el-checkbox>
+                    </ul>
+                  </el-checkbox-group>
+                </li>
+                <li class="classification technology">
+                  <div class="item-li technology-category">
+                    <el-checkbox label="内容" class="classification-text"></el-checkbox>
+                  </div>
+                </li>
+                <li class="classification technology">
+                  <div class="item-li technology-category">
+                    <el-checkbox label="财务" class="classification-text"></el-checkbox>
+                  </div>
+                </li>
+                <li class="classification technology">
+                  <div class="item-li technology-category">
+                    <el-checkbox label="人力资源" class="classification-text"></el-checkbox>
+                  </div>
+                </li>
+                <li class="classification technology">
+                  <div class="item-li technology-category">
+                    <el-checkbox label="法务" class="classification-text"></el-checkbox>
+                  </div>
+                </li>
+                <li class="classification technology">
+                  <div class="item-li technology-category">
+                    <el-checkbox label="行政支持" class="classification-text"></el-checkbox>
+                  </div>
+                </li>
+                <li class="classification technology">
+                  <div class="item-li technology-category">
+                    <el-checkbox label="战略与投资" class="classification-text"></el-checkbox>
+                  </div>
+                </li>
+              </el-checkbox-group>
             </ul>
           </div>
           <div class="option-item">
-            <div class="item-text">
+            <div
+              class="item-text"
+              :class="{nomarl:EnterpriseisOpen,active:!EnterpriseisOpen}"
+              @click="openList('Enterprise')"
+            >
               <a href="javascript:;" class="item-link">事业群</a>
               <div class="open-btn">
                 <div class="vertical-btn"></div>
                 <div class="transverse-btn"></div>
               </div>
             </div>
-            <ul class="item-ul" style="padding-top: 20px; display: none;">
-              <li class="item-li-box">
-                <div class="checkbox-content">
-                  <div class="item-li">CDG企业发展事业群</div>
-                </div>
-              </li>
-              <li class="item-li-box">
-                <div class="checkbox-content">
-                  <div class="item-li">CSIG云与智慧产业事业群</div>
-                </div>
-              </li>
-              <li class="item-li-box">
-                <div class="checkbox-content">
-                  <div class="item-li">IEG互动娱乐事业群</div>
-                </div>
-              </li>
-              <li class="item-li-box">
-                <div class="checkbox-content">
-                  <div class="item-li">PCG平台与内容事业群</div>
-                </div>
-              </li>
-              <li class="item-li-box">
-                <div class="checkbox-content">
-                  <div class="item-li">WXG微信事业群</div>
-                </div>
-              </li>
-              <li class="item-li-box">
-                <div class="checkbox-content">
-                  <div class="item-li">TEG技术工程事业群</div>
-                </div>
-              </li>
-              <li class="item-li-box">
-                <div class="checkbox-content">
-                  <div class="item-li">S1职能系统－职能线</div>
-                </div>
-              </li>
-              <li class="item-li-box">
-                <div class="checkbox-content">
-                  <div class="item-li">S2职能系统－财经线</div>
-                </div>
-              </li>
-              <li class="item-li-box">
-                <div class="checkbox-content">
-                  <div class="item-li">S3职能系统－HR与管理线</div>
-                </div>
-              </li>
-              <li class="item-li-box">
-                <div class="checkbox-content">
-                  <div class="item-li">腾讯音乐</div>
-                </div>
-              </li>
+            <ul class="item-ul" style="padding-top: 20px;" :style="Enterprisedispl">
+              <el-checkbox-group v-model="checkList">
+                <li class="item-li-box">
+                  <div class="checkbox-content">
+                    <el-checkbox label="CDG企业发展事业群" class="item-li"></el-checkbox>
+                  </div>
+                </li>
+                <li class="item-li-box">
+                  <div class="checkbox-content">
+                    <el-checkbox label="CSIG云与智慧产业事业群" class="item-li"></el-checkbox>
+                  </div>
+                </li>
+                <li class="item-li-box">
+                  <div class="checkbox-content">
+                    <el-checkbox label="IEG互动娱乐事业群" class="item-li"></el-checkbox>
+                  </div>
+                </li>
+                <li class="item-li-box">
+                  <div class="checkbox-content">
+                    <el-checkbox label="PCG平台与内容事业群" class="item-li"></el-checkbox>
+                  </div>
+                </li>
+                <li class="item-li-box">
+                  <div class="checkbox-content">
+                    <el-checkbox label="WXG微信事业群" class="item-li"></el-checkbox>
+                  </div>
+                </li>
+                <li class="item-li-box">
+                  <div class="checkbox-content">
+                    <el-checkbox label="TEG技术工程事业群" class="item-li"></el-checkbox>
+                  </div>
+                </li>
+                <li class="item-li-box">
+                  <div class="checkbox-content">
+                    <el-checkbox label="S1职能系统－职能线" class="item-li"></el-checkbox>
+                  </div>
+                </li>
+                <li class="item-li-box">
+                  <div class="checkbox-content">
+                    <el-checkbox label="S2职能系统－财经线" class="item-li"></el-checkbox>
+                  </div>
+                </li>
+                <li class="item-li-box">
+                  <div class="checkbox-content">
+                    <el-checkbox label="S3职能系统－HR与管理线" class="item-li"></el-checkbox>
+                  </div>
+                </li>
+                <li class="item-li-box">
+                  <div class="checkbox-content">
+                    <el-checkbox label="腾讯音乐" class="item-li"></el-checkbox>
+                  </div>
+                </li>
+              </el-checkbox-group>
             </ul>
           </div>
           <div class="option-item last">
-            <div class="item-text">
+            <div
+              class="item-text"
+              :class="{nomarl:RecruitmentisOpen,active:!RecruitmentisOpen}"
+              @click="openList('Recruitment')"
+            >
               <a href="javascript:;" class="item-link">招聘类型</a>
               <div class="open-btn">
                 <div class="vertical-btn"></div>
                 <div class="transverse-btn"></div>
               </div>
             </div>
-            <ul class="item-ul" style="padding-top: 20px; display: none;">
-              <li class="item-li-box">
-                <div class="checkbox-content">
-                  <div class="item-li">社招</div>
-                </div>
-              </li>
-              <li class="item-li-box">
-                <div class="checkbox-content">
-                  <div class="item-li">校招应届生</div>
-                </div>
-              </li>
-              <li class="item-li-box">
-                <div class="checkbox-content">
-                  <div class="item-li">校招实习生</div>
-                </div>
-              </li>
-              <li class="item-li-box">
-                <div class="checkbox-content">
-                  <div class="item-li">校招MBA</div>
-                </div>
-              </li>
+            <ul class="item-ul" style="padding-top: 20px;" :style="Recruitmentdispl">
+              <el-checkbox-group v-model="checkList">
+                <li class="item-li-box">
+                  <div class="checkbox-content">
+                    <el-checkbox label="社招" class="item-li"></el-checkbox>
+                  </div>
+                </li>
+                <li class="item-li-box">
+                  <div class="checkbox-content">
+                    <el-checkbox label="校招应届生" class="item-li"></el-checkbox>
+                  </div>
+                </li>
+                <li class="item-li-box">
+                  <div class="checkbox-content">
+                    <el-checkbox label="校招实习生" class="item-li"></el-checkbox>
+                  </div>
+                </li>
+                <li class="item-li-box">
+                  <div class="checkbox-content">
+                    <el-checkbox label="校招MBA" class="item-li"></el-checkbox>
+                  </div>
+                </li>
+              </el-checkbox-group>
             </ul>
           </div>
         </div>
@@ -316,6 +354,19 @@
 
 <script>
 import searchList from "@/components/searchList.vue";
+const cityOptions = [
+    "技术研发类",
+    "质量管理类",
+    "技术运营类",
+    "安全技术类",
+    "AI、算法与大数据",
+    "企管类"
+  ],
+  designs = ["设计类", "游戏美术类"],
+  products = ["产品类", "游戏产品类", "项目类"],
+  sales = ["销售类", "客服类"];
+const dspln = "display:none;padding-top:0px;height:0px;padding-bottom:0px",
+  dsplb = "display:block;padding-top:20px";
 export default {
   name: "schcontent",
   components: {
@@ -324,29 +375,200 @@ export default {
   data() {
     return {
       msg: 1,
-      isOpen: true,
-      displ:
-        "display:none;padding-top:0px;height:0px;padding-bottom:0px"
+      CityisOpen: true,
+      Citydispl: dspln,
+      CountryisOpen: true,
+      Countrydispl: dspln,
+      ProfessionalisOpen: true,
+      Professionaldispl: dspln,
+      EnterpriseisOpen: true,
+      Enterprisedispl: dspln,
+      RecruitmentisOpen: true,
+      Recruitmentdispl: dspln,
+      checkAllJishu: false,
+      checkedCities: [],
+      checkList: [],
+      cities: cityOptions,
+      checkAllDesigns: false,
+      checkedDesigns: [],
+      designs,
+      checkAllProducts: false,
+      checkedProducts: [],
+      products,
+      checkAllSales: false,
+      checkedSales: [],
+      sales,
+      isIndeterminate1: false,
+      isIndeterminate2: false,
+      isIndeterminate3: false,
+      isIndeterminate4: false
     };
   },
   methods: {
-    openList() {
-      this.isOpen = !this.isOpen;
-      if (
-        this.displ ==
-        "display:none;padding-top:0px;height:0px;padding-bottom:0px"
-      ) {
-        this.displ = "display:block;";
-      } else {
-        this.displ =
-          "display:none;padding-top:0px;height:0px;padding-bottom:0px";
+    openList(w) {
+      if (w == "City") {
+        this.CityisOpen = !this.CityisOpen;
+        if (this.Citydispl == dspln) {
+          this.Citydispl = dsplb;
+        } else {
+          this.Citydispl = dspln;
+        }
+      } else if (w == "Country") {
+        this.CountryisOpen = !this.CountryisOpen;
+        if (this.Countrydispl == dspln) {
+          this.Countrydispl = dsplb;
+        } else {
+          this.Countrydispl = dspln;
+        }
+      } else if (w == "Professional") {
+        this.ProfessionalisOpen = !this.ProfessionalisOpen;
+        if (this.Professionaldispl == dspln) {
+          this.Professionaldispl = dsplb;
+        } else {
+          this.Professionaldispl = dspln;
+        }
+      } else if (w == "Enterprise") {
+        this.EnterpriseisOpen = !this.EnterpriseisOpen;
+        if (this.Enterprisedispl == dspln) {
+          this.Enterprisedispl = dsplb;
+        } else {
+          this.Enterprisedispl = dspln;
+        }
+      } else if (w == "Recruitment") {
+        this.RecruitmentisOpen = !this.RecruitmentisOpen;
+        if (this.Recruitmentdispl == dspln) {
+          this.Recruitmentdispl = dsplb;
+        } else {
+          this.Recruitmentdispl = dspln;
+        }
       }
+    },
+    handleCheckAllChangeJishu(val) {
+      this.checkedCities = val ? cityOptions : [];
+      this.isIndeterminate1 = false;
+    },
+    handleCheckAllChangeDesign(val) {
+      this.checkedDesigns = val ? designs : [];
+      this.isIndeterminate2 = false;
+    },
+    handleCheckAllChangeProduct(val) {
+      this.checkedProducts = val ? products : [];
+      this.isIndeterminate3 = false;
+    },
+    handleCheckAllChangeSale(val) {
+      this.checkedSales = val ? sales : [];
+      this.isIndeterminate4 = false;
+    },
+    handleCheckedCitiesChange(value) {
+      let checkedCount = value.length;
+      this.checkAllJishu = checkedCount === this.cities.length;
+      this.isIndeterminate1 =
+        checkedCount > 0 && checkedCount < this.cities.length;
+    },
+    handleCheckedDesignsChange(value) {
+      let checkedCount = value.length;
+      this.checkAllDesigns = checkedCount === this.designs.length;
+      this.isIndeterminate2 =
+        checkedCount > 0 && checkedCount < this.designs.length;
+    },
+    handleCheckedProductsChange(value) {
+      let checkedCount = value.length;
+      this.checkAllProducts = checkedCount === this.products.length;
+      this.isIndeterminate3 =
+        checkedCount > 0 && checkedCount < this.products.length;
+    },
+    handleCheckedSalesChange(value) {
+      let checkedCount = value.length;
+      this.checkAllSales = checkedCount === this.sales.length;
+      this.isIndeterminate4 =
+        checkedCount > 0 && checkedCount < this.sales.length;
+    },
+    add(val){
+      console.log(val);
+      let arr = this.$store.state.SelectedList;
+      for (let i in arr) {
+        if(arr[i]==val){
+          this.$store.commit('delSelectedList',i)
+          return;
+        }
+      };
+      this.$store.commit('addSelectedList',val);
+    },
+    clog(val, ev){
+      var a = arguments;
+      console.log(a);
+      ev.stopPropagation();
+      
+      return false;
     }
   }
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
+<style>
+.el-checkbox__label {
+  font-size: 16px;
+}
+.el-checkbox__input .el-checkbox__inner {
+  content: "";
+  position: absolute;
+  top: 4px;
+  left: 0;
+  width: 16px;
+  height: 16px;
+  display: block;
+  background: url(./../images/Rectangle-22x.png) no-repeat;
+  background-size: 100% 100%;
+  transition: background 0.4s cubic-bezier(0.2, 0, 0.2, 1);
+  border: none;
+}
+.el-checkbox .el-checkbox__label {
+  position: relative;
+  display: inline-block;
+  font-size: 16px;
+  color: #333333;
+  /* letter-spacing: 0.03px; */
+  line-height: 20px;
+  padding-left: 28px;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+.el-checkbox__input.is-checked .el-checkbox__inner,
+.el-checkbox__input.is-indeterminate .el-checkbox__inner {
+  background-color: #fff;
+  border-color: #fff;
+  content: "";
+  position: absolute;
+  top: 4px;
+  left: 0;
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  background: url(./../images/Checkbox_selected2x.png) no-repeat;
+  background-size: 100% 100%;
+}
+.el-checkbox .el-checkbox__input {
+  display: inline-block;
+  position: absolute;
+}
+.el-checkbox__inner .el-checkbox__original {
+  opacity: 0;
+  outline: 0;
+  /* position: absolute; */
+  margin: 0;
+  width: 0;
+  height: 0;
+  z-index: -1;
+}
+.el-checkbox__inner::after {
+  display: none;
+}
+.is-checked .el-checkbox__input.is-checked + .el-checkbox__label {
+  color: #333333;
+}
+</style>
+
 <style scoped>
 .shadow-bg {
   position: absolute;
@@ -436,6 +658,9 @@ export default {
   display: block;
   padding-top: 20px;
   margin-top: 0;
+  transition: 0.3s height ease-in-out, 0.3s padding-top ease-in-out,
+    0.3s padding-bottom ease-in-out;
+  overflow: hidden;
 }
 .content .search-sidebar .option-wrapper .item-text .open-btn {
   cursor: pointer;
@@ -451,6 +676,9 @@ export default {
 .content .search-sidebar .option-wrapper .item-text.active .transverse-btn {
   animation: rotateTransverseGo 0.5s cubic-bezier(0.2, 0, 0.2, 1) forwards;
 }
+.content .search-sidebar .option-wrapper .item-text.nomarl .vertical-btn {
+  animation: rotateVerticalBack 0.5s cubic-bezier(0.2, 0, 0.2, 1) forwards;
+}
 .content .search-sidebar .option-wrapper .item-text .transverse-btn {
   position: absolute;
   right: 0px;
@@ -461,17 +689,6 @@ export default {
 }
 .content .search-sidebar .option-wrapper .classification {
   margin-bottom: 14px;
-}
-.content .search-sidebar .option-wrapper .item-li {
-  position: relative;
-  display: inline-block;
-  font-size: 16px;
-  color: #333333;
-  /* letter-spacing: 0.03px; */
-  line-height: 20px;
-  padding-left: 28px;
-  box-sizing: border-box;
-  cursor: pointer;
 }
 .content .search-sidebar .option-wrapper .item-li.active::before {
   content: "";
@@ -504,28 +721,20 @@ export default {
   color: #333333;
   /* letter-spacing: 0.03px; */
   line-height: 20px;
-  padding-left: 28px;
+  /* padding-left: 28px; */
   box-sizing: border-box;
   cursor: pointer;
-}
-.content .search-sidebar .option-wrapper .item-li::before {
-  content: "";
-  position: absolute;
-  top: 2px;
-  left: 0;
-  width: 16px;
-  height: 16px;
-  display: block;
-  background: url(./../images/Rectangle-22x.png) no-repeat;
-  background-size: 100% 100%;
-  transition: background 0.4s cubic-bezier(0.2, 0, 0.2, 1);
 }
 .content .search-sidebar .option-wrapper .item-li-box {
   margin-top: 14px;
 }
-.container .content .search-sidebar .option-wrapper .current-selection {
+.content .search-sidebar .option-wrapper .current-selection {
   margin-top: 0;
   display: block;
+  padding-top: 20px;
+  transition: 0.3s height ease-in-out, 0.3s padding-top ease-in-out,
+    0.3s padding-bottom ease-in-out;
+  overflow: hidden;
 }
 .content .search-sidebar .option-wrapper .current-selection .search-input {
   position: relative;
@@ -589,6 +798,46 @@ export default {
     transform: rotate(90deg);
     -ms-transform: rotate(90deg);
     -webkit-transform: rotate(90deg);
+  }
+}
+@-webkit-keyframes rotateVerticalGo {
+  0% {
+    transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    -webkit-transform: rotate(90deg);
+  }
+}
+@-webkit-keyframes rotateVerticalBack {
+  0% {
+    transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    -webkit-transform: rotate(90deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+  }
+}
+
+@keyframes rotateVerticalBack {
+  0% {
+    transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    -webkit-transform: rotate(90deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
   }
 }
 @keyframes rotateTransverseGo {

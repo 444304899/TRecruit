@@ -1,6 +1,6 @@
 <template>
     <div class="search" @click="change">
-    <myheader></myheader>
+    <myheader :aws="true"></myheader>
     <schcontent></schcontent>
     <div class="footer-seat mobile"></div>
     <myfooter :cancel="msg"></myfooter>

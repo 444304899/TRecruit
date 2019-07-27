@@ -7,43 +7,13 @@
       </div>
     </div>
     <div class="label-wrapper default" :style="'max-height:'+lbhight">
-      <div class="btn remove-label">清除全部</div>
+      <div class="btn remove-label" @click="cleanAll">清除全部</div>
       <div class="btn more-label" @click="more">{{msg}}</div>
       <div class="label">
-        <div class="label-item">
+        <div class="label-item" v-for="(item,ind) in this.$store.state.SelectedList" :key="ind">
           <div class="label-text">
-            <a href class="label-link">技术研发类</a>
-            <span class="close-btn"></span>
-          </div>
-        </div>
-        <div class="label-item">
-          <div class="label-text">
-            <a href class="label-link">质量管理类</a>
-            <span class="close-btn"></span>
-          </div>
-        </div>
-        <div class="label-item">
-          <div class="label-text">
-            <a href class="label-link">技术运营类</a>
-            <span class="close-btn"></span>
-          </div>
-        </div>
-        <div class="label-item">
-          <div class="label-text">
-            <a href class="label-link">安全技术类</a>
-            <span class="close-btn"></span>
-          </div>
-        </div>
-        <div class="label-item">
-          <div class="label-text">
-            <a href class="label-link">AI、算法与大数据</a>
-            <span class="close-btn"></span>
-          </div>
-        </div>
-        <div class="label-item">
-          <div class="label-text">
-            <a href class="label-link">企管类</a>
-            <span class="close-btn"></span>
+            <a href class="label-link">{{item}}</a>
+            <span class="close-btn" @click="del(ind)"></span>
           </div>
         </div>
       </div>
@@ -129,6 +99,13 @@ export default {
         this.lbhight = "58px";
         this.msg = "更多";
       }
+    },
+    cleanAll(){
+      this.$store.commit('CleanSelectedList')
+    },
+    del(ind){
+      this.$store.commit('delSelectedList',ind)
+      // console.log(ind);
     }
   }
 };

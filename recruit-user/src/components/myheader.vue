@@ -78,31 +78,37 @@
 <script>
 export default {
   name: "myheader",
-  props: {},
+  props: {
+    aws: {
+      type: Boolean,
+      default: false
+    }
+  },
   data() {
     return {
       isShow: false,
       notRow: true,
-      isDown: true
+      isDown: false
     };
   },
-  watch: {
-  },
+  watch: {},
   methods: {
     focus() {
       this.isShow = true;
-      this.$store.commit('SdChange');
-      console.log("focus",this.$store.state.SdShow);
+      this.$store.commit("SdChange");
+      // console.log("focus",this.$store.state.SdShow);
     },
     unfocus() {
       this.isShow = false;
-      this.$store.commit('SdChange');
-      console.log("unfocus",this.$store.state.SdShow);
+      this.$store.commit("SdChange");
+      // console.log("unfocus",this.$store.state.SdShow);
     },
     handleScroll() {
       var scrollTop =
         document.documentElement.scrollTop || document.body.scrollTop;
-      scrollTop > 0 ? (this.notRow = false) : (this.notRow = true);
+      if (!this.aws) {
+        scrollTop > 0 ? (this.notRow = false) : (this.notRow = true);
+      }
       var scrollTop =
         window.pageYOffset ||
         document.documentElement.scrollTop ||
@@ -118,9 +124,16 @@ export default {
       }
     },
     search() {
-      
       console.log("search");
+    },
+    awsIsRow() {
+      if (this.aws == true) {
+        this.notRow = false;
+      }
     }
+  },
+  created() {
+    this.awsIsRow();
   },
   mounted: function() {
     window.addEventListener("scroll", this.handleScroll, true); // 监听（绑定）滚轮滚动事件
