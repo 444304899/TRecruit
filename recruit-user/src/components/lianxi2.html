@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body {
+            width: 900px;
+            margin: 0px auto;
+            line-height: 23px;
+            padding: 10px;
+        }
+
+        #right {
+            float: right;
+            width: 750px;
+            border: solid 1px gray;
+            padding: 10px;
+            height: 1000px;
+        }
+
+        #fix {
+            border: solid 1px gray;
+            width: 90px;
+            padding: 10px;
+            background-color: #eff;
+            height: 150px;
+        }
+
+        #top {
+            width: 92px;
+            padding: 10px;
+            height: 100px;
+            background: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div style="float:left;width:120px; ">
+        <div id="top"></div>
+        <div id="fix"></div>
+    </div>
+    <div id="right"></div>
+    <script>
+        window.onload = function () {
+            //获取obj元素距离body元素的尺寸，
+            function htmlPosition(obj) {
+                var o = obj;
+                // 获取对象顶部距离最近的定位父元素的距离
+                var t = o.offsetTop;
+                var l = o.offsetLeft;
+                //通过循环将所有在父级元素中采用定位的元素距离body的尺寸累加
+                while (o = o.offsetParent) {
+                    t += o.offsetTop;
+                    l += o.offsetLeft;
+                }
+                obj.data_top = t;
+                obj.data_left = l;
+            }
+            //事件处理
+            function htmlScroll() {
+                // 获取文档向上滚动的尺寸
+                var top = document.body.scrollTop || document.documentElement.scrollTop;
+                // 在元素顶部与客户区顶部边缘重合之前，定位方式为static,重合后定位方式为fixed
+                if (elFix.data_top < top) {
+                    elFix.style.position = 'fixed';
+                    elFix.style.top = 0;
+                    elFix.style.left = elFix.data_left;
+                }
+                else {
+                    elFix.style.position = 'static';
+                }
+            }
+            //获取宽度值
+            var oldHtmlWidth=document.documentElement.offsetWidth;
+            //为窗口注册onresize事件处理函数，也就是调整窗口大小的时候触发此事件。
+            window.onresize=function(){
+                //获取新的文档宽度大小
+                var newHtmlWidth=documentElement.offsetWidth;
+                //若新旧相等，跳出函数
+                if(oldHtmlWidth==newHtmlWidth){
+                    return;
+                }
+                oldHtmlWidth=newHtmlWidth;
+                elFix.style.position='static';
+                htmlPosition(elFix);
+                htmlScroll();
+            }
+            var elFix=document.getElementById('fix');
+            htmlPosition(elFix);
+            window.onscroll=htmlScroll;
+        }
+    </script>
+</body>
+
+</html>
