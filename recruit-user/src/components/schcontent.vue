@@ -56,12 +56,12 @@
               <ul class="city-selection">
                 <el-checkbox-group v-model="checkList">
                   <li class="item-li-box">
-                    <div class="checkbox-content">
+                    <div class="checkbox-content"  @change="add('深圳')">
                       <el-checkbox label="深圳" class="item-li"></el-checkbox>
                     </div>
                   </li>
                   <li class="item-li-box">
-                    <div class="checkbox-content">
+                    <div class="checkbox-content" @change="add('北京')">
                       <el-checkbox label="北京" class="item-li"></el-checkbox>
                     </div>
                   </li>
@@ -103,6 +103,7 @@
                         :key="city"
                         class="item-li-box"
                         style="display:block"
+                        @change="add(city)"
                       >
                         <!-- <li class="item-li-box"> -->
                         <div class="checkbox-content">
@@ -133,9 +134,10 @@
                         :key="design"
                         class="item-li-box"
                         style="display:block"
+                        @change="add(design)"
                       >
                         <!-- <li class="item-li-box"> -->
-                        <div class="checkbox-content">
+                        <div class="checkbox-content" >
                           <div class="item-li">{{design}}</div>
                         </div>
                         <!-- </li> -->
@@ -163,6 +165,7 @@
                         :key="product"
                         class="item-li-box"
                         style="display:block"
+                        @change="add(product)"
                       >
                         <!-- <li class="item-li-box"> -->
                         <div class="checkbox-content">
@@ -174,7 +177,7 @@
                   </el-checkbox-group>
                 </li>
                 <li class="classification technology">
-                  <div class="item-li technology-category">
+                  <div class="item-li technology-category" @change="add('营销与公关')">
                     <el-checkbox label="营销与公关" class="classification-text"></el-checkbox>
                   </div>
                 </li>
@@ -198,6 +201,7 @@
                         :key="sale"
                         class="item-li-box"
                         style="display:block"
+                        @change="add(sale)"
                       >
                         <!-- <li class="item-li-box"> -->
                         <div class="checkbox-content">
@@ -209,32 +213,32 @@
                   </el-checkbox-group>
                 </li>
                 <li class="classification technology">
-                  <div class="item-li technology-category">
+                  <div class="item-li technology-category" @change="add('内容')">
                     <el-checkbox label="内容" class="classification-text"></el-checkbox>
                   </div>
                 </li>
                 <li class="classification technology">
-                  <div class="item-li technology-category">
+                  <div class="item-li technology-category" @change="add('财务')">
                     <el-checkbox label="财务" class="classification-text"></el-checkbox>
                   </div>
                 </li>
                 <li class="classification technology">
-                  <div class="item-li technology-category">
+                  <div class="item-li technology-category" @change="add('人力资源')">
                     <el-checkbox label="人力资源" class="classification-text"></el-checkbox>
                   </div>
                 </li>
                 <li class="classification technology">
-                  <div class="item-li technology-category">
+                  <div class="item-li technology-category" @change="add('法务')">
                     <el-checkbox label="法务" class="classification-text"></el-checkbox>
                   </div>
                 </li>
                 <li class="classification technology">
-                  <div class="item-li technology-category">
+                  <div class="item-li technology-category" @change="add('行政支持')">
                     <el-checkbox label="行政支持" class="classification-text"></el-checkbox>
                   </div>
                 </li>
                 <li class="classification technology">
-                  <div class="item-li technology-category">
+                  <div class="item-li technology-category" @change="add('战略与投资')">
                     <el-checkbox label="战略与投资" class="classification-text"></el-checkbox>
                   </div>
                 </li>
@@ -256,52 +260,52 @@
             <ul class="item-ul" style="padding-top: 20px;" :style="Enterprisedispl">
               <el-checkbox-group v-model="checkList">
                 <li class="item-li-box">
-                  <div class="checkbox-content">
+                  <div class="checkbox-content" @change="add('CDG企业发展事业群')">
                     <el-checkbox label="CDG企业发展事业群" class="item-li"></el-checkbox>
                   </div>
                 </li>
                 <li class="item-li-box">
-                  <div class="checkbox-content">
+                  <div class="checkbox-content" @change="add('CSIG云与智慧产业事业群')">
                     <el-checkbox label="CSIG云与智慧产业事业群" class="item-li"></el-checkbox>
                   </div>
                 </li>
                 <li class="item-li-box">
-                  <div class="checkbox-content">
+                  <div class="checkbox-content" @change="add('IEG互动娱乐事业群')">
                     <el-checkbox label="IEG互动娱乐事业群" class="item-li"></el-checkbox>
                   </div>
                 </li>
                 <li class="item-li-box">
-                  <div class="checkbox-content">
+                  <div class="checkbox-content" @change="add('PCG平台与内容事业群')">
                     <el-checkbox label="PCG平台与内容事业群" class="item-li"></el-checkbox>
                   </div>
                 </li>
                 <li class="item-li-box">
-                  <div class="checkbox-content">
+                  <div class="checkbox-content" @change="add('WXG微信事业群')">
                     <el-checkbox label="WXG微信事业群" class="item-li"></el-checkbox>
                   </div>
                 </li>
                 <li class="item-li-box">
-                  <div class="checkbox-content">
+                  <div class="checkbox-content" @change="add('TEG技术工程事业群')">
                     <el-checkbox label="TEG技术工程事业群" class="item-li"></el-checkbox>
                   </div>
                 </li>
                 <li class="item-li-box">
-                  <div class="checkbox-content">
+                  <div class="checkbox-content" @change="add('S1职能系统－职能线')">
                     <el-checkbox label="S1职能系统－职能线" class="item-li"></el-checkbox>
                   </div>
                 </li>
                 <li class="item-li-box">
-                  <div class="checkbox-content">
+                  <div class="checkbox-content" @change="add('S2职能系统－财经线')">
                     <el-checkbox label="S2职能系统－财经线" class="item-li"></el-checkbox>
                   </div>
                 </li>
                 <li class="item-li-box">
-                  <div class="checkbox-content">
+                  <div class="checkbox-content" @change="add('S3职能系统－HR与管理线')">
                     <el-checkbox label="S3职能系统－HR与管理线" class="item-li"></el-checkbox>
                   </div>
                 </li>
                 <li class="item-li-box">
-                  <div class="checkbox-content">
+                  <div class="checkbox-content" @change="add('腾讯音乐')">
                     <el-checkbox label="腾讯音乐" class="item-li"></el-checkbox>
                   </div>
                 </li>
@@ -323,22 +327,22 @@
             <ul class="item-ul" style="padding-top: 20px;" :style="Recruitmentdispl">
               <el-checkbox-group v-model="checkList">
                 <li class="item-li-box">
-                  <div class="checkbox-content">
+                  <div class="checkbox-content" @change="add('社招')">
                     <el-checkbox label="社招" class="item-li"></el-checkbox>
                   </div>
                 </li>
                 <li class="item-li-box">
-                  <div class="checkbox-content">
+                  <div class="checkbox-content" @change="add('校招应届生')">
                     <el-checkbox label="校招应届生" class="item-li"></el-checkbox>
                   </div>
                 </li>
                 <li class="item-li-box">
-                  <div class="checkbox-content">
+                  <div class="checkbox-content" @change="add('校招实习生')">
                     <el-checkbox label="校招实习生" class="item-li"></el-checkbox>
                   </div>
                 </li>
                 <li class="item-li-box">
-                  <div class="checkbox-content">
+                  <div class="checkbox-content" @change="add('校招MBA')">
                     <el-checkbox label="校招MBA" class="item-li"></el-checkbox>
                   </div>
                 </li>
@@ -463,25 +467,25 @@ export default {
       let checkedCount = value.length;
       this.checkAllJishu = checkedCount === this.cities.length;
       this.isIndeterminate1 =
-        checkedCount > 0 && checkedCount < this.cities.length;
+        checkedCount > 0 && checkedCount <= this.cities.length;
     },
     handleCheckedDesignsChange(value) {
       let checkedCount = value.length;
       this.checkAllDesigns = checkedCount === this.designs.length;
       this.isIndeterminate2 =
-        checkedCount > 0 && checkedCount < this.designs.length;
+        checkedCount > 0 && checkedCount <= this.designs.length;
     },
     handleCheckedProductsChange(value) {
       let checkedCount = value.length;
       this.checkAllProducts = checkedCount === this.products.length;
       this.isIndeterminate3 =
-        checkedCount > 0 && checkedCount < this.products.length;
+        checkedCount > 0 && checkedCount <= this.products.length;
     },
     handleCheckedSalesChange(value) {
       let checkedCount = value.length;
       this.checkAllSales = checkedCount === this.sales.length;
       this.isIndeterminate4 =
-        checkedCount > 0 && checkedCount < this.sales.length;
+        checkedCount > 0 && checkedCount <= this.sales.length;
     },
     add(val){
       console.log(val);
@@ -497,7 +501,6 @@ export default {
     clog(val, ev){
       var a = arguments;
       console.log(a);
-      ev.stopPropagation();
       
       return false;
     }

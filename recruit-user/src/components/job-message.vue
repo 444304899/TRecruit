@@ -9,50 +9,50 @@
       <div class="job-content">
         <div class="g-clr job-padding mar-bottom">
           <div class="job-list">
-            <a href="search.html?pcid=40001" target="_blank" class="job-list-link"></a>
+            <a href="search?pcid=40001" target="_blank" class="job-list-link"></a>
             <div class="job-box">
               <p class="job-classification">技术类</p>
-              <a href="search.html?pcid=40001" target="_blank" class="job-href">查看岗位</a>
+              <a href="search?pcid=40001" target="_blank" class="job-href">查看岗位</a>
             </div>
             <div class="job-icon icon-1"></div>
           </div>
           <div class="job-list">
-            <a href="search.html?pcid=40003" target="_blank" class="job-list-link"></a>
+            <a href="search?pcid=40003" target="_blank" class="job-list-link"></a>
             <div class="job-box">
               <p class="job-classification">产品类</p>
-              <a href="search.html?pcid=40003" target="_blank" class="job-href">查看岗位</a>
+              <a href="search?pcid=40003" target="_blank" class="job-href">查看岗位</a>
             </div>
             <div class="job-icon icon-2"></div>
           </div>
           <div class="job-list">
-            <a href="search.html?pcid=40006" target="_blank" class="job-list-link"></a>
+            <a href="search?pcid=40006" target="_blank" class="job-list-link"></a>
             <div class="job-box">
               <p class="job-classification">内容类</p>
-              <a href="search.html?pcid=40006" target="_blank" class="job-href">查看岗位</a>
+              <a href="search?pcid=40006" target="_blank" class="job-href">查看岗位</a>
             </div>
             <div class="job-icon icon-3"></div>
           </div>
           <div class="job-list">
-            <a href="search.html?pcid=40002" target="_blank" class="job-list-link"></a>
+            <a href="search?pcid=40002" target="_blank" class="job-list-link"></a>
             <div class="job-box">
               <p class="job-classification">设计类</p>
-              <a href="search.html?pcid=40002" target="_blank" class="job-href">查看岗位</a>
+              <a href="search?pcid=40002" target="_blank" class="job-href">查看岗位</a>
             </div>
             <div class="job-icon icon-4"></div>
           </div>
           <div class="job-list">
-            <a href="search.html?pcid=40005" target="_blank" class="job-list-link"></a>
+            <a href="search?pcid=40005" target="_blank" class="job-list-link"></a>
             <div class="job-box">
               <p class="job-classification">销售、服务与支持类</p>
-              <a href="search.html?pcid=40005" target="_blank" class="job-href">查看岗位</a>
+              <a href="search?pcid=40005" target="_blank" class="job-href">查看岗位</a>
             </div>
             <div class="job-icon icon-5"></div>
           </div>
           <div class="job-list">
-            <a href="search.html?pcid=40008" target="_blank" class="job-list-link"></a>
+            <a href="search?pcid=40008" target="_blank" class="job-list-link"></a>
             <div class="job-box">
               <p class="job-classification">人力资源类</p>
-              <a href="search.html?pcid=40008" target="_blank" class="job-href">查看岗位</a>
+              <a href="search?pcid=40008" target="_blank" class="job-href">查看岗位</a>
             </div>
             <div class="job-icon icon-6"></div>
           </div>

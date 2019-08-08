@@ -9,7 +9,7 @@ import 'element-ui/lib/theme-chalk/index.css'
 import myheader from './components/myheader.vue'
 import myfooter from './components/myfooter.vue';
 
-axios.defaults.baseURL = '';
+axios.defaults.baseURL = 'http://192.168.7.100:81';
 axios.defaults.withCredentials = true;
 
 Vue.prototype.axios = axios;

@@ -22,7 +22,7 @@
       <div class="recruit-wrap recruit-margin">
         <!---->
         <div class="recruit-list">
-          <a class="recruit-list-link">
+          <router-link :to="{path:'jobdesc',query:{jid:1}}" class="recruit-list-link">
             <h4 class="recruit-title">WXG02-121 微信视频图像处理高级工程师（深圳/北京/广州/成都/上海）</h4>
             <p class="recruit-tips">
               <span>WXG</span> |
@@ -37,7 +37,29 @@
               岗位职责：
               负责视频图像前后处理算法与前沿技术研究，主要面向微信视频通话、图片和视频文件类业务，以及未来视频图片相关应用。
             </p>
-          </a>
+          </router-link>
+          <div class="recruit-collection">
+            <span class="icon-collection"></span>
+            <span class="collection-text">收藏</span>
+          </div>
+        </div>
+        <div class="recruit-list" v-for="(item,index) in joblist" :key="index" v-if="index<10">
+          <router-link :to="{path:'jobdesc',query:{jid:1}}" class="recruit-list-link">
+            <h4 class="recruit-title">{{item.jobname}}</h4>
+            <p class="recruit-tips">
+              <span>{{item.groups}}</span> |
+              <span>{{item.address}}</span> |
+              <span>{{item.jobtype}}</span> |
+              <!---->
+              <span>{{item.datas}}</span>
+            </p>
+            <p class="recruit-text">
+              团队介绍：
+              {{item.duty}}
+              岗位职责：
+              {{item.demand}}
+            </p>
+          </router-link>
           <div class="recruit-collection">
             <span class="icon-collection"></span>
             <span class="collection-text">收藏</span>
@@ -87,7 +109,8 @@ export default {
   data() {
     return {
       lbhight: "58px",
-      msg: "更多"
+      msg: "更多",
+      joblist:[]
     };
   },
   methods: {
@@ -101,13 +124,24 @@ export default {
       }
     },
     cleanAll(){
+      // debugge
       this.$store.commit('CleanSelectedList')
     },
     del(ind){
       this.$store.commit('delSelectedList',ind)
       // console.log(ind);
     }
-  }
+  },
+  created: function() {
+			this.axios.get('/joblist', {
+				params: {
+				}
+			}).then((response) => {
+				this.joblist = response.data;
+			}).catch(function(error) {
+				console.log(error);
+			});
+		},
 };
 </script>
 

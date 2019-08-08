@@ -6,7 +6,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     SdShow:false,
-    SelectedList:["技术研发类","质量管理类","技术运营类","安全技术类","AI、算法与大数据","企管类"]
+    SelectedList:[]
   },
   mutations: {
     SdChange (state){
