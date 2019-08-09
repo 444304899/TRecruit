@@ -31,8 +31,8 @@ export default new Router({
       component: Search
     },
     {
-      path: '/jobs',
-      name: 'Jobs',
+      path: '/jobdesc',
+      name: 'Jobdesc',
       component: Jobs
     }
   ]

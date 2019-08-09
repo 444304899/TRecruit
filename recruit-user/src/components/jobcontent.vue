@@ -74,15 +74,15 @@
                 <a href class="rec-list-link">
                   <h4 class="rec-title">27092-用户增长后台开发工程师（深圳）</h4>
                   <p class="rec-tips">
-                    <span>PCG </span>
-                    <span>| </span>
-                    <span>深圳总部，中国 </span>
-                    <span>| </span>
-                    <span>技术 </span>
-                    <span style="display:none">| </span>
-                    <span style="display:none"> </span>
-                    <span>| </span>
-                    <span>2019年07月26日 </span>
+                    <span>PCG</span>
+                    <span>|</span>
+                    <span>深圳总部，中国</span>
+                    <span>|</span>
+                    <span>技术</span>
+                    <span style="display:none">|</span>
+                    <span style="display:none"></span>
+                    <span>|</span>
+                    <span>2019年07月26日</span>
                   </p>
                   <p class="rec-text">
                     负责腾讯域内产品的用户增长方向，包括但不限于以下几个方向：
@@ -108,6 +108,12 @@
 </template>
 <script>
 export default {
+  data() {
+    return {
+      jid: this.$route.query.jid,
+      jobmsg: []
+    };
+  },
   methods: {
     slid(elFix) {
       var o = obj;
@@ -120,6 +126,21 @@ export default {
         elFix.style.position = "static";
       }
     }
+  },
+  created: function() {
+    console.log(this.$route.query.jid);
+    this.axios
+      .get("/joblist", {
+        params: {
+          jid: this.jid
+        }
+      })
+      .then(response => {
+        this.jobmsg = response.data;
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
   }
 };
 </script>
